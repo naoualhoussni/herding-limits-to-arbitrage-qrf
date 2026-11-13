@@ -1,4 +1,4 @@
-# 📈 Financial Herding & Limits to Arbitrage (LoA)
+# Financial Herding & Limits to Arbitrage (LoA)
 ## Non-Linear Detection via Quantile Regression Forests (QRF)
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
@@ -12,7 +12,7 @@
 
 ---
 
-## 📌 Project Overview
+## Project Overview
 
 This study investigates the non-linear relationship between **Limits to Arbitrage (LoA)** and **investor herding behavior** across Chinese equity markets.
 
@@ -27,7 +27,7 @@ To resolve this limitation, this repository implements a comprehensive econometr
 
 ---
 
-## 📊 Key Findings
+##  Key Findings
 
 ### 1. Herding Amplification in Extreme Lower Tails
 | Quantile ($\tau$) | Intercept $\beta_0$ | Linear $\|R_m\|$ $\beta_1$ | **Herding Curvature $\beta_2$ ($R_m^2$)** | Lag CSAD $\beta_3$ |
@@ -46,7 +46,7 @@ The **Quantile Regression Forests (QRF)** algorithm consistently outperforms the
 
 ---
 
-## 📁 Repository Architecture
+##  Repository Architecture
 
 ```text
 ├── .gitignore                  # Git ignore file (excludes heavy raw .pkl datasets)
@@ -81,7 +81,7 @@ The **Quantile Regression Forests (QRF)** algorithm consistently outperforms the
 
 ---
 
-## 🚀 Quickstart & Installation
+##  Quickstart & Installation
 
 ### 1. Clone the Repository
 ```bash
@@ -112,8 +112,8 @@ python scripts/run_pipeline.py
 
 ---
 
-## 👥 Authors & Academic References
-* **Authors:** Research Group in Empirical Finance & Data Science
+## Authors & Academic References
+* **Authors:** Naoual HOUSSNI & Ilyass EL BEKKALI
 * **Key Academic References:**
   * Chang, E. C., Cheng, J. W., & Khorana, A. (2000). *An examination of herd behavior in equity markets: An international perspective*. Journal of Banking & Finance, 24(10), 1651–1679.
   * Christie, W. G., & Huang, R. D. (1995). *Following the pied piper: Do individual returns herd around the market?*. Financial Analysts Journal, 51(4), 31–42.
