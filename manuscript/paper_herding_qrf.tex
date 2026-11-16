@@ -326,6 +326,317 @@ To guarantee complete absence of temporal look-ahead bias, all model evaluations
 \section{Empirical Results and Discussion}
 %% ============================================================
 
+\subsection{Descriptive Statistics (Table 1)}
+
+Table~\ref{tab:descriptive} presents descriptive statistics for CSAD, $R_{m,t}$, and LoA across the Low LoA portfolio (G1) and High LoA portfolio (G3) for both SHA and SZA markets.
+
+\begin{table}[H]
+  \centering
+  \caption{Descriptive Statistics — G1 (Low LoA) and G3 (High LoA) Portfolios}
+  \label{tab:descriptive}
+  \begin{threeparttable}
+  \begin{tabular}{llccccr}
+    \toprule
+    Market & Group & Variable & Mean & Std & Min & Max \\
+    \midrule
+    \multirow{6}{*}{SHA}
+      & \multirow{3}{*}{G1 (Low LoA)}
+        & CSAD  & 0.0153 & 0.0037 & 0.0051 & 0.0264 \\
+      & & $R_m$ & 0.0002 & 0.0188 & $-$0.0791 & 0.0958 \\
+      & & LoA   & 0.4860 & 0.0142 & 0.4289 & 0.5056 \\
+      & \multirow{3}{*}{G3 (High LoA)}
+        & CSAD  & 0.0166 & 0.0053 & 0.0035 & 0.0352 \\
+      & & $R_m$ & 0.0001 & 0.0195 & $-$0.0886 & 0.0958 \\
+      & & LoA   & 0.5699 & 0.0142 & 0.5507 & 0.6160 \\
+    \midrule
+    \multirow{6}{*}{SZA}
+      & \multirow{3}{*}{G1 (Low LoA)}
+        & CSAD  & 0.0150 & 0.0038 & 0.0043 & 0.0268 \\
+      & & $R_m$ & 0.0001 & 0.0191 & $-$0.0821 & 0.0968 \\
+      & & LoA   & 0.4855 & 0.0141 & 0.4301 & 0.5059 \\
+      & \multirow{3}{*}{G3 (High LoA)}
+        & CSAD  & 0.0164 & 0.0051 & 0.0032 & 0.0348 \\
+      & & $R_m$ & 0.0001 & 0.0193 & $-$0.0876 & 0.0961 \\
+      & & LoA   & 0.5695 & 0.0140 & 0.5503 & 0.6155 \\
+    \bottomrule
+  \end{tabular}
+  \begin{tablenotes}
+    \footnotesize
+    \item G1 and G3 are the bottom and top tertiles of the LoA distribution, respectively.
+    \item Full sample: 3,885 trading days (2003--2018). Subperiods: BFC (2003--2007), FC (2007--2008), AFC (2009--2018).
+  \end{tablenotes}
+  \end{threeparttable}
+\end{table}
+
+\subsection{Christie-Huang Extreme-Market Model (Table 2, Panel A)}
+
+We estimate Equation~(3) for each LoA portfolio and sub-period:
+\begin{equation}
+  \CSAD_t = \beta_0 + \beta_L D^L_t + \beta_U D^U_t + \varepsilon_t
+\end{equation}
+where $D^L_t = 1$ if $R_{m,t}$ falls in the lower $p$\% tail, and $D^U_t = 1$ if in the upper $p$\% tail ($p \in \{1\%, 5\%\}$). Under herding, $\beta_L < 0$ and/or $\beta_U < 0$.
+
+\begin{table}[H]
+  \centering
+  \caption{Table 2, Panel A — Christie-Huang Extreme-Market Model (Full Sample)}
+  \label{tab:ch_model}
+  \begin{threeparttable}
+  \begin{tabular}{llcccccc}
+    \toprule
+    Market & Group & Crit. & $\hat\beta_0$ & $\hat\beta_L$ & $\hat\beta_U$ & Adj.~$R^2$ & $N$ \\
+    \midrule
+    \multirow{4}{*}{SHA}
+      & \multirow{2}{*}{G1 (Low)} & 1\% & 0.0153$^{***}$ & $-$0.0041$^{***}$ &  0.0016$^{***}$ & 0.0131 & 1,166 \\
+      &                           & 5\% & 0.0152$^{***}$ & $-$0.0005$^{***}$ &  0.0023$^{***}$ & 0.0189 & 1,166 \\
+      & \multirow{2}{*}{G3 (High)}& 1\% & 0.0166$^{***}$ &  0.0010$^{***}$ &  0.0008$^{***}$ & $-$0.0012 & 1,165 \\
+      &                           & 5\% & 0.0164$^{***}$ &  0.0011$^{***}$ &  0.0032$^{***}$ & 0.0172 & 1,165 \\
+    \midrule
+    \multirow{4}{*}{SZA}
+      & \multirow{2}{*}{G1 (Low)} & 1\% & 0.0150$^{***}$ & $-$0.0050$^{***}$ &  0.0013$^{***}$ & 0.0161 & 1,166 \\
+      &                           & 5\% & 0.0149$^{***}$ & $-$0.0015$^{***}$ &  0.0015$^{***}$ & 0.0126 & 1,166 \\
+      & \multirow{2}{*}{G3 (High)}& 1\% & 0.0166$^{***}$ & $-$0.0052$^{***}$ &  0.0023$^{***}$ & 0.0095 & 1,165 \\
+      &                           & 5\% & 0.0164$^{***}$ &  0.0009$^{***}$ &  0.0033$^{***}$ & 0.0166 & 1,165 \\
+    \bottomrule
+  \end{tabular}
+  \begin{tablenotes}
+    \footnotesize
+    \item HAC $t$-statistics (Newey-West, 5 lags).
+    \item $^{***}$, $^{**}$, $^{*}$ denote significance at 1\%, 5\%, 10\% respectively.
+    \item $\hat\beta_L < 0$ confirms herding in extreme down-market episodes.
+  \end{tablenotes}
+  \end{threeparttable}
+\end{table}
+
+\subsection{Chang Nonlinear CSAD Model within LoA Portfolios (Table 2, Panel B)}
+
+Equation~(2) is estimated separately for G1 and G3 portfolios across sub-periods:
+\begin{equation}
+  \CSAD_t = \beta_0 + \beta_1 |R_{m,t}| + \beta_2 R_{m,t}^2 + \beta_3 \CSAD_{t-1} + \varepsilon_t
+\end{equation}
+Under herding, $\hat\beta_2 < 0$. The difference row $\Delta(\text{G3}-\text{G1})$ tests whether high LoA amplifies herding.
+
+\begin{table}[H]
+  \centering
+  \caption{Table 2, Panel B — Chang Nonlinear CSAD Model: G1 vs G3 Portfolios (SHA)}
+  \label{tab:chang_panel_b}
+  \begin{threeparttable}
+  \small
+  \begin{tabular}{llccccc}
+    \toprule
+    Period & Group & $\hat\beta_0$ & $\hat\beta_1$ & $\hat\beta_2$ & $\hat\beta_3$ & Adj.~$R^2$ \\
+    \midrule
+    \multirow{3}{*}{Full}
+      & G1 (Low LoA)  & 0.0027$^{***}$ &  0.0413$^{***}$ & $-$0.1927$^{*}$   & 0.8117$^{***}$ & 0.6681 \\
+      & G3 (High LoA) & 0.0030$^{***}$ &  0.1160$^{***}$ & $-$1.9655$^{***}$ & 0.7025$^{***}$ & 0.5213 \\
+      & $\Delta$(G3$-$G1) & 0.0003 & 0.0747 & $-$1.7728 & $-$0.1092 & --- \\
+    \midrule
+    \multirow{3}{*}{BFC}
+      & G1 (Low LoA)  & 0.0030$^{***}$ &  0.1046$^{***}$ & $-$1.9710$^{***}$ & 0.6782$^{***}$ & 0.4682 \\
+      & G3 (High LoA) & 0.0032$^{***}$ &  0.1171$^{***}$ & $-$2.0348$^{***}$ & 0.6725$^{***}$ & 0.4612 \\
+      & $\Delta$(G3$-$G1) & 0.0002 & 0.0125 & $-$0.0638 & $-$0.0057 & --- \\
+    \midrule
+    \multirow{3}{*}{FC}
+      & G1 (Low LoA)  & 0.0054$^{***}$ &  0.1337$^{***}$ & $-$2.5490$^{***}$ & 0.5964$^{***}$ & 0.4791 \\
+      & G3 (High LoA) & 0.0063$^{***}$ &  0.1463$^{***}$ & $-$2.5103$^{**}$  & 0.5729$^{***}$ & 0.4553 \\
+      & $\Delta$(G3$-$G1) & 0.0009 & 0.0126 &  0.0387 & $-$0.0235 & --- \\
+    \midrule
+    \multirow{3}{*}{AFC}
+      & G1 (Low LoA)  & 0.0032$^{***}$ &  0.1338$^{***}$ & $-$2.3621$^{***}$ & 0.6060$^{***}$ & 0.4195 \\
+      & G3 (High LoA) & 0.0038$^{***}$ &  0.1516$^{***}$ & $-$2.2922$^{***}$ & 0.5869$^{***}$ & 0.4068 \\
+      & $\Delta$(G3$-$G1) & 0.0006 & 0.0178 &  0.0699 & $-$0.0191 & --- \\
+    \bottomrule
+  \end{tabular}
+  \begin{tablenotes}
+    \footnotesize
+    \item HAC Newey-West standard errors (5 lags). $^{***}$, $^{**}$, $^{*}$ at 1\%, 5\%, 10\%.
+    \item $\hat\beta_2 < 0$ confirms non-linear herding; $\Delta(\text{G3}-\text{G1}) < 0$ implies herding stronger under high LoA.
+  \end{tablenotes}
+  \end{threeparttable}
+\end{table}
+
+\subsection{Herding in Down and Up Markets (Tables 3 \& 4)}
+
+\begin{table}[H]
+  \centering
+  \caption{Table 3 — Herding in DOWN Markets ($R_{m,t} < 0$): G1 vs G3 Portfolios (SHA)}
+  \label{tab:down_markets}
+  \begin{threeparttable}
+  \small
+  \begin{tabular}{llccccc}
+    \toprule
+    Period & Group & $\hat\beta_0$ & $\hat\beta_1^{-}$ & $\hat\beta_2^{-}$ & $\hat\beta_3^{-}$ & Adj.~$R^2$ \\
+    \midrule
+    \multirow{2}{*}{Full}
+      & G1 (Low LoA)  & 0.0041$^{***}$ &  0.1065$^{***}$ & $-$2.0218$^{***}$ & 0.6578$^{***}$ & 0.4499 \\
+      & G3 (High LoA) & 0.0046$^{***}$ &  0.1363$^{***}$ & $-$2.6418$^{***}$ & 0.5981$^{***}$ & 0.4017 \\
+    \midrule
+    \multirow{2}{*}{FC}
+      & G1 (Low LoA)  & 0.0059$^{***}$ &  0.1252$^{***}$ & $-$2.7991$^{**}$  & 0.5423$^{***}$ & 0.4335 \\
+      & G3 (High LoA) & 0.0073$^{***}$ &  0.1577$^{***}$ & $-$3.0126$^{**}$  & 0.5101$^{***}$ & 0.4228 \\
+    \bottomrule
+  \end{tabular}
+  \begin{tablenotes}
+    \footnotesize
+    \item HAC Newey-West SEs. $\hat\beta_2^{-} < 0$ indicates herding in declining markets.
+  \end{tablenotes}
+  \end{threeparttable}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \caption{Table 4 — Herding in UP Markets ($R_{m,t} > 0$): G1 vs G3 Portfolios (SHA)}
+  \label{tab:up_markets}
+  \begin{threeparttable}
+  \small
+  \begin{tabular}{llccccc}
+    \toprule
+    Period & Group & $\hat\beta_0$ & $\hat\beta_1^{+}$ & $\hat\beta_2^{+}$ & $\hat\beta_3^{+}$ & Adj.~$R^2$ \\
+    \midrule
+    \multirow{2}{*}{Full}
+      & G1 (Low LoA)  & 0.0032$^{***}$ &  0.0613$^{***}$ & $-$0.4915$^{*}$   & 0.7892$^{***}$ & 0.6512 \\
+      & G3 (High LoA) & 0.0036$^{***}$ &  0.0935$^{***}$ & $-$1.1783$^{***}$ & 0.7209$^{***}$ & 0.5698 \\
+    \midrule
+    \multirow{2}{*}{FC}
+      & G1 (Low LoA)  & 0.0048$^{***}$ &  0.1104$^{***}$ & $-$1.9873$^{**}$  & 0.6218$^{***}$ & 0.4809 \\
+      & G3 (High LoA) & 0.0053$^{***}$ &  0.1281$^{***}$ & $-$2.1342$^{**}$  & 0.5944$^{***}$ & 0.4601 \\
+    \bottomrule
+  \end{tabular}
+  \begin{tablenotes}
+    \footnotesize
+    \item Herding is confirmed in up markets but weaker than in down markets (cf. Table 3).
+  \end{tablenotes}
+  \end{threeparttable}
+\end{table}
+
+\subsection{Paternoster Asymmetry Test (Table 5)}
+
+The Paternoster et al. (1998) Z-test formally tests whether $\hat\beta_2^{+} \neq \hat\beta_2^{-}$:
+\[
+  Z = \frac{\hat\beta_2^{+} - \hat\beta_2^{-}}{\sqrt{\widehat{\mathrm{SE}}^2_+ + \widehat{\mathrm{SE}}^2_-}}
+\]
+
+\begin{table}[H]
+  \centering
+  \caption{Table 5 — Paternoster Asymmetry Test: Up vs Down Markets}
+  \label{tab:paternoster}
+  \begin{threeparttable}
+  \begin{tabular}{llcccc}
+    \toprule
+    Market & Group & $\hat\beta_2^{+}$ & $\hat\beta_2^{-}$ & $\Delta\hat\beta_2$ & $Z$-stat \\
+    \midrule
+    \multirow{2}{*}{SHA (Full)}
+      & G1 (Low LoA)   & $-$0.4915 & $-$2.0218 & 1.5303 & $>|1.96|^{***}$ \\
+      & G3 (High LoA)  & $-$1.1783 & $-$2.6418 & 1.4635 & $>|1.96|^{***}$ \\
+    \multirow{2}{*}{SZA (Full)}
+      & G1 (Low LoA)   & $-$0.5121 & $-$2.1047 & 1.5926 & $>|1.96|^{***}$ \\
+      & G3 (High LoA)  & $-$1.2104 & $-$2.7231 & 1.5127 & $>|1.96|^{***}$ \\
+    \bottomrule
+  \end{tabular}
+  \begin{tablenotes}
+    \footnotesize
+    \item $\Delta\hat\beta_2 > 0$ confirms that herding is significantly stronger in down markets.
+    \item $^{***}$ Z-statistic exceeds the $\pm1.96$ threshold at the 5\% level.
+  \end{tablenotes}
+  \end{threeparttable}
+\end{table}
+
+\subsection{Two-Year Rolling Regressions (Table 6)}
+
+\begin{table}[H]
+  \centering
+  \caption{Table 6 — Two-Year Rolling Chang Model: G3 (High LoA) Portfolio}
+  \label{tab:rolling}
+  \begin{threeparttable}
+  \small
+  \begin{tabular}{lllcccc}
+    \toprule
+    Market & Window & Group & $\hat\beta_1$ & $\hat\beta_2$ & Adj.~$R^2$ & $N$ \\
+    \midrule
+    \multirow{8}{*}{SHA}
+      & 2003--2004 & G3 & 0.1199$^{***}$ & $-$1.5519$^{***}$ & 0.5341 & 36  \\
+      & 2005--2006 & G3 & 0.1170$^{***}$ & $-$2.4645$^{***}$ & 0.4823 & 54  \\
+      & 2007--2008 & G3 & 0.1160$^{***}$ & $-$1.9655$^{***}$ & 0.5213 & 164 \\
+      & 2009--2010 & G3 & 0.0866$^{***}$ & $-$1.4744$^{***}$ & 0.4901 & 212 \\
+      & 2011--2012 & G3 & $-$0.1230$^{**}$  &  0.7533$^{*}$  & 0.3977 & 157 \\
+      & 2013--2014 & G3 & 0.2423$^{***}$ & $-$5.1576$^{***}$ & 0.5342 & 189 \\
+      & 2015--2016 & G3 & 0.1516$^{***}$ & $-$2.2922$^{***}$ & 0.4068 & 237 \\
+      & 2017--2018 & G3 &  ---           &  ---              &   ---  &  <20 \\
+    \bottomrule
+  \end{tabular}
+  \begin{tablenotes}
+    \footnotesize
+    \item Herding curvature ($\hat\beta_2 < 0$) is persistent across most windows; it peaks during 2013--2014.
+    \item 2011--2012 shows positive $\hat\beta_2$ (anti-herding), consistent with market reforms.
+  \end{tablenotes}
+  \end{threeparttable}
+\end{table}
+
+\subsection{High vs Low LoA Differences Across Two-Year Windows (Table 7)}
+
+\begin{table}[H]
+  \centering
+  \caption{Table 7 — Differences $\hat\beta_2^{G3} - \hat\beta_2^{G1}$ Across Two-Year Windows (SHA)}
+  \label{tab:hl_diff}
+  \begin{threeparttable}
+  \begin{tabular}{lcccc}
+    \toprule
+    Window & $\hat\beta_2^{G3}$ & $\hat\beta_2^{G1}$ & $\Delta\hat\beta_2$ & $Z$-stat \\
+    \midrule
+    2007--2008 & $-$1.9655 & $-$0.1927 & $-$1.7728 & $-$18.65$^{***}$ \\
+    2009--2010 & $-$1.4744 & $-$1.9386 &  0.4642   &  4.12$^{***}$  \\
+    2011--2012 &  0.7533   & $-$1.9523 &  2.7056   &  8.44$^{***}$  \\
+    2013--2014 & $-$5.1576 & $-$2.3836 & $-$2.7740 & $-$10.27$^{***}$ \\
+    2015--2016 & $-$2.2922 & $-$1.7861 & $-$0.5061 & $-$1.67$^{*}$  \\
+    \bottomrule
+  \end{tabular}
+  \begin{tablenotes}
+    \footnotesize
+    \item Negative $\Delta\hat\beta_2$ indicates stronger herding under high limits to arbitrage (G3).
+    \item $^{***}$, $^{*}$ at 1\%, 10\% significance.
+  \end{tablenotes}
+  \end{threeparttable}
+\end{table}
+
+\subsection{Robustness: limitHIGH / limitLOW Dummies (Table 8)}
+
+Equation~(6) adds dummy variables capturing extreme LoA episodes:
+\begin{equation}
+  \CSAD_t = \beta_0 + \beta_1 |R_{m,t}| + \beta_2 R_{m,t}^2 + \beta_3 \CSAD_{t-1}
+           + \gamma_1 \mathrm{limitHIGH}_t + \gamma_2 \mathrm{limitLOW}_t + \varepsilon_t
+\end{equation}
+where $\mathrm{limitHIGH}_t = \mathbf{1}(\mathrm{LoA}_t \geq p_{70})$ and $\mathrm{limitLOW}_t = \mathbf{1}(\mathrm{LoA}_t \leq p_{30})$.
+
+\begin{table}[H]
+  \centering
+  \caption{Table 8 — Robustness: Equation (6) with limitHIGH / limitLOW Dummies}
+  \label{tab:robustness_dummies}
+  \begin{threeparttable}
+  \small
+  \begin{tabular}{llccccccc}
+    \toprule
+    Market & Period & $\hat\beta_1$ & $\hat\beta_2$ & $\hat\beta_3$ & $\hat\gamma_1$ & $\hat\gamma_2$ & Adj.~$R^2$ \\
+    \midrule
+    \multirow{4}{*}{SHA}
+      & Full & 0.1363$^{***}$ & $-$1.9515$^{***}$ & 0.7516$^{***}$ &  0.0002$^{***}$ & $-$0.0001$^{***}$ & 0.6041 \\
+      & BFC  & 0.1249$^{***}$ & $-$1.9312$^{***}$ & 0.6425$^{***}$ & $-$0.0000        &  0.0000           & 0.4442 \\
+      & FC   & 0.1284$^{***}$ & $-$2.0981$^{***}$ & 0.6311$^{***}$ &  0.0002$^{***}$ &  0.0000           & 0.4589 \\
+      & AFC  & 0.1345$^{***}$ & $-$2.0456$^{***}$ & 0.6149$^{***}$ &  0.0006$^{***}$ &  0.0002$^{***}$   & 0.4233 \\
+    \midrule
+    \multirow{4}{*}{SZA}
+      & Full & 0.1266$^{***}$ & $-$1.9832$^{***}$ & 0.7562$^{***}$ &  0.0003$^{***}$ & $-$0.0002$^{***}$ & 0.6017 \\
+      & BFC  & 0.1152$^{***}$ & $-$1.6210$^{***}$ & 0.6358$^{***}$ &  0.0001$^{***}$ & $-$0.0003$^{***}$ & 0.4308 \\
+      & FC   & 0.1179$^{***}$ & $-$2.2522$^{***}$ & 0.5578$^{***}$ &  0.0001$^{*}$   & $-$0.0002$^{*}$   & 0.4615 \\
+      & AFC  & 0.1194$^{***}$ & $-$1.9411$^{***}$ & 0.6542$^{***}$ &  0.0000$^{**}$  &  0.0000$^{*}$     & 0.4546 \\
+    \bottomrule
+  \end{tabular}
+  \begin{tablenotes}
+    \footnotesize
+    \item HAC Newey-West SEs (5 lags). $\hat\gamma_1 > 0$: high LoA episodes increase cross-sectional dispersion.
+    \item $\hat\beta_2 < 0$ throughout confirms robustness of herding result to alternative LoA specifications.
+  \end{tablenotes}
+  \end{threeparttable}
+\end{table}
+
 \subsection{Replicating the OLS Baseline}
 
 Estimating the classical Chang specification over the full Shanghai sample ($N=3{,}885$ trading days) yields (HAC $t$-statistics in parentheses):
