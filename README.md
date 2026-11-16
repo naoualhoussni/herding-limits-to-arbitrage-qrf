@@ -54,19 +54,30 @@ The **Quantile Regression Forests (QRF)** algorithm consistently outperforms the
 ├── README.md                   # Comprehensive project documentation (English)
 │
 ├── notebooks/                  # Deliverable 1: End-to-End Jupyter Notebooks
-│   └── Theme2_Herding_QRF_Complete.ipynb  # Self-contained reproducible notebook
+│   └── Theme2_Herding_QRF_Complete.ipynb  # Self-contained reproducible notebook (All Tables 1-8 & QRF)
 │
 ├── manuscript/                 # Deliverable 2: Scientific Research Paper
-│   ├── Scientific_Paper_Herding_QRF.md    # Complete ~5,150-word paper (Scopus journal ready)
+│   ├── paper_herding_qrf.tex           # Complete LaTeX source (JBEF/AEL ready with all tables)
+│   ├── Scientific_Paper_Herding_QRF.md # Complete ~5,500-word paper in Markdown
 │   ├── figures/                # Publication-grade figures (300 DPI)
 │   │   ├── fig1_timeseries_csad_loa.png
 │   │   ├── fig2_quantile_beta2_trajectory.png
 │   │   ├── fig3_pinball_loss_comparison.png
 │   │   └── fig4_qrf_fan_chart.png
-│   └── tables/                 # Summary tables (descriptive, coefficients, Pinball loss)
-│       ├── table1_descriptive_sha.csv
-│       ├── table_quantile_regression_coefficients.csv
-│       └── table_out_of_sample_evaluation.csv
+│   └── tables/                 # Benchmark & QRF tables (Tables 1 to 8 + deciles)
+│       ├── table1_descriptive_stats.csv
+│       ├── table2_panelA_christie_huang.csv
+│       ├── table2_panelB_chang_ols.csv
+│       ├── table3_herding_down_markets.csv
+│       ├── table4_herding_up_markets.csv
+│       ├── table5_paternoster_asymmetry.csv
+│       ├── table6_rolling_two_year.csv
+│       ├── table7_hl_differences.csv
+│       └── table8_robustness_dummies.csv
+│
+├── scripts/                    # Automated replication scripts
+│   ├── run_full_replication.py         # Replicates Tables 1-8 in one execution
+│   └── generate_complete_notebook.py   # Generates the integrated notebook
 │
 ├── src/                        # Modular source code
 │   ├── data_loader.py          # Data ingestion and validation
@@ -74,7 +85,7 @@ The **Quantile Regression Forests (QRF)** algorithm consistently outperforms the
 │   └── evaluate.py             # Pinball Loss, RMSE, and TimeSeriesSplit evaluation
 │
 └── data/                       # Daily aggregated market datasets
-    ├── README.md               # Guide and download links to raw files on Google Drive
+    ├── README.md               # Guide and column specs
     ├── daily_market_sha.csv    # Shanghai A-shares daily series (N = 3,886)
     └── daily_market_sza.csv    # Shenzhen A-shares daily series (N = 3,886)
 ```
