@@ -31,11 +31,22 @@
 \usepackage{natbib}
 \usepackage[colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}
 \usepackage{url}
+\usepackage{fancyhdr}
 \usepackage{microtype}
 \usepackage{enumitem}
 \usepackage{threeparttable}
 \usepackage{dcolumn}
 \usepackage{siunitx}
+
+%% ——— Layout & Headers ———
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{Non-Linear Herding \& Limits to Arbitrage in Chinese A-Shares}}
+\fancyhead[R]{\small\thepage}
+\fancyfoot[C]{\footnotesize SUP'RH --- École de Management et d'Intelligence Artificielle}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.2pt}
+\setlength{\headheight}{15pt}
 
 %% ——— Typography ———
 \doublespacing
@@ -56,11 +67,11 @@
 }
 
 \author{%
-  \textbf{Naoual Houssni}\thanks{SUP'RH --- École Supérieure de Management, de Gestion et de RH, Casablanca, Maroc. E-mail: \texttt{naoualhoussni@users.noreply.github.com}.}
+  \textbf{Naoual Houssni}\thanks{SUP'RH --- École de Management et d'Intelligence Artificielle, Casablanca, Maroc. E-mail: \texttt{naoualhoussni@users.noreply.github.com}.}
   \quad\and\quad
-  \textbf{Ilyass El Bekkali}\thanks{SUP'RH --- École Supérieure de Management, de Gestion et de RH, Casablanca, Maroc.}
+  \textbf{Ilyass El Bekkali}\thanks{SUP'RH --- École de Management et d'Intelligence Artificielle, Casablanca, Maroc.}
   \\[10pt]
-  \textit{SUP'RH --- École Supérieure de Management, de Gestion et de RH}
+  \textit{SUP'RH --- École de Management et d'Intelligence Artificielle}
 }
 
 \date{\today}
@@ -366,6 +377,13 @@ Table~\ref{tab:descriptive} presents descriptive statistics for CSAD, $R_{m,t}$,
   \end{tablenotes}
   \end{threeparttable}
 \end{table}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\textwidth]{figures/fig1_timeseries_csad_loa.png}
+  \caption{Time Series Dynamics of Return Dispersion ($\CSAD$) and Limits to Arbitrage ($\LoA$) across Shanghai (SHA) and Shenzhen (SZA) Markets (2003--2018). The shaded vertical band denotes the Global Financial Crisis (FC, 2007--2008).}
+  \label{fig:timeseries}
+\end{figure}
 
 \subsection{Christie-Huang Extreme-Market Model (Table 2, Panel A)}
 
@@ -702,6 +720,13 @@ The empirical progression of $\beta_2(\tau)$ across deciles yields groundbreakin
   \item \textbf{Statistical Inadequacy of Mean Regression:} By averaging across tranquil and turbulent days, OLS systematically camouflages the severe tail vulnerability of the market.
 \end{enumerate}
 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.92\textwidth]{figures/fig2_quantile_beta2_trajectory.png}
+  \caption{Estimated Non-Linear Herding Trajectory $\hat\beta_2(\tau)$ across Dispersion Quantiles $\tau \in [0.05, 0.95]$ for Low-LoA (G1) versus High-LoA (G3) Portfolios in Shanghai and Shenzhen. The horizontal dashed line denotes the zero-herding benchmark.}
+  \label{fig:beta2_traj}
+\end{figure}
+
 \subsection{Out-of-Sample Performance: QRF vs.\ QuantReg vs.\ OLS}
 
 Table~\ref{tab:oos_eval} reports the out-of-sample Pinball loss and RMSE across deciles under 5-fold \texttt{TimeSeriesSplit} cross-validation.
@@ -736,6 +761,20 @@ Table~\ref{tab:oos_eval} reports the out-of-sample Pinball loss and RMSE across 
   \end{tablenotes}
   \end{threeparttable}
 \end{table}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.92\textwidth]{figures/fig3_pinball_loss_comparison.png}
+  \caption{Out-of-Sample Pinball Loss (Tick Loss) Across Dispersion Deciles: Comparison between OLS Mean Benchmark, Linear Quantile Regression, and Non-Parametric Quantile Regression Forests (QRF).}
+  \label{fig:pinball}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.96\textwidth]{figures/fig4_qrf_fan_chart.png}
+  \caption{Out-of-Sample Quantile Regression Forest (QRF) Fan Chart: Multi-Horizon Conditional Quantile Forecasts ($\tau \in \{0.10, 0.25, 0.50, 0.75, 0.90\}$) plotted against realized $\CSAD_t$ across trading sessions.}
+  \label{fig:fanchart}
+\end{figure}
 
 %% ============================================================
 \section{Robustness Checks}

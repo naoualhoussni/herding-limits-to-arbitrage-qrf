@@ -1,5 +1,7 @@
 # Unveiling Non-Linear Herding in Financial Markets: A Quantile Regression Forest Approach to Chinese A-Shares under Limits to Arbitrage
 
+**Authors:** Naoual Houssni & Ilyass El Bekkali  
+**Affiliation:** SUP'RH --- École de Management et d'Intelligence Artificielle, Casablanca, Maroc  
 **Target Journals:** *Journal of Behavioral and Experimental Finance* / *Applied Economics Letters*  
 **Keywords:** Herding Behaviour; Limits to Arbitrage (LoA); Quantile Regression Forests (QRF); Cross-Sectional Absolute Deviation (CSAD); Machine Learning; Chinese Stock Market; Pinball Loss; Asymmetric Herding.  
 **JEL Classification:** G12, G14, G41, C14, C53.
